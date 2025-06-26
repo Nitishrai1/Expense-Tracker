@@ -40,7 +40,7 @@ export default function SignIn() {
             <div className="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center">
               <PiggyBank className="w-6 h-6 text-white" />
             </div>
-            <span className="text-white font-bold text-2xl">Spendly</span>
+            <span className="text-white font-bold text-2xl">Trakly</span>
           </div>
           <h1 className="text-2xl font-bold text-white">Welcome back</h1>
           <p className="text-gray-400">Sign in to your account to continue</p>
