@@ -34,12 +34,16 @@ export const getById = async (req: Request, res: Response) => {
 
 export const addNew = async (req: Request, res: Response) => {
   try {
-    const id = Number(req.params.id); 
+    const id = Number(req.params.id);
     const { title, type, amount, category, description, date } = req.body;
     const parsedAmount = parseFloat(amount);
 
     const user = await prisma.user.findUnique({ where: { id } });
     if (!user) return res.status(404).json({ message: "User not found" });
+
+    if (type === "expense" && parsedAmount > user.availableBalance) {
+      return res.status(403).json({ message: "Cannot add expense: available balance is too low" });
+    }
 
     const expense = await prisma.expense.create({
       data: {
@@ -53,7 +57,6 @@ export const addNew = async (req: Request, res: Response) => {
       },
     });
 
-   
     let updatedAvailable = user.availableBalance;
     let updatedTotal = user.totalBalance;
 
@@ -80,6 +83,7 @@ export const addNew = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Failed to create expense", err });
   }
 };
+
 
 
 export const updateById = async (req: Request, res: Response) => {
