@@ -118,7 +118,7 @@ function ExpenseListContent() {
                           expense.type === "credit" ? "text-green-600" : "text-red-600"
                         }`}
                       >
-                        {expense.type === "credit" ? "+" : "-"}${expense.amount.toFixed(2)}
+                        {expense.type === "credit" ? "+" : "-"}Rs - {expense.amount.toFixed(2)}
                       </TableCell>
                       <TableCell className="text-right">
                         <div className="flex justify-end space-x-2">

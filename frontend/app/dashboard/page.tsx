@@ -97,7 +97,7 @@ function DashboardContent() {
           </div>
         </div>
 
-        {/* Stats Cards */}
+        
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -105,8 +105,8 @@ function DashboardContent() {
               <DollarSign className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-emerald-600">${availableBalance.toFixed(2)}</div>
-              <p className="text-xs text-muted-foreground">${availableBalance.toFixed(2)} available</p>
+              <div className="text-2xl font-bold text-emerald-600">RS - {availableBalance.toFixed(2)}</div>
+              <p className="text-xs text-muted-foreground">Rs - {availableBalance.toFixed(2)} available</p>
             </CardContent>
           </Card>
 
@@ -116,7 +116,7 @@ function DashboardContent() {
               <TrendingUp className="h-4 w-4 text-emerald-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-emerald-600">${totalIncome.toFixed(2)}</div>
+              <div className="text-2xl font-bold text-emerald-600">Rs - {totalIncome.toFixed(2)}</div>
               <p className="text-xs text-muted-foreground">From all sources</p>
             </CardContent>
           </Card>
@@ -127,7 +127,7 @@ function DashboardContent() {
               <TrendingDown className="h-4 w-4 text-red-600" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-red-600">${totalExpenses.toFixed(2)}</div>
+              <div className="text-2xl font-bold text-red-600">Rs - {totalExpenses.toFixed(2)}</div>
               <p className="text-xs text-muted-foreground">Based on transactions</p>
             </CardContent>
           </Card>
@@ -161,14 +161,7 @@ function DashboardContent() {
                   View All
                 </Button>
               </Link>
-              <Button variant="outline" className="w-full">
-                <TrendingUp className="w-4 h-4 mr-2" />
-                Reports
-              </Button>
-              <Button variant="outline" className="w-full">
-                <DollarSign className="w-4 h-4 mr-2" />
-                Budget
-              </Button>
+              
             </div>
           </CardContent>
         </Card>
