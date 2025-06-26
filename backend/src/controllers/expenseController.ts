@@ -114,29 +114,42 @@ export const deleteById = async (req: Request, res: Response) => {
       where: { id: Number(id) },
     });
 
-    if (!expense) return res.status(404).json({ message: "Expense not found" });
+    if (!expense) {
+      return res.status(404).json({ message: "Expense not found" });
+    }
 
     const user = await prisma.user.findUnique({
       where: { id: expense.userId },
     });
 
-    if (!user) return res.status(404).json({ message: "User not found" });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
 
-    const adjustedBalance =
-      expense.type === "expense"
-        ? user.availableBalance + expense.amount
-        : user.availableBalance - expense.amount;
+    let adjustedAvailable = user.availableBalance;
+    let adjustedTotal = user.totalBalance;
+
+    if (expense.type === "expense") {
+      adjustedAvailable += expense.amount;
+    } else if (expense.type === "income") {
+      adjustedAvailable -= expense.amount;
+      adjustedTotal -= expense.amount;
+    }
 
     await prisma.expense.delete({ where: { id: Number(id) } });
 
     await prisma.user.update({
       where: { id: user.id },
-      data: { availableBalance: adjustedBalance },
+      data: {
+        availableBalance: adjustedAvailable,
+        totalBalance: adjustedTotal,
+      },
     });
 
-    res.status(204).json({ msg: "Deleted the expense and updated balance" });
+    res.status(204).json({ msg: "Deleted the expense and updated balances" });
   } catch (error) {
     console.error("Error deleting expense:", error);
     res.status(500).json({ error: "Failed to delete expense" });
   }
 };
+
