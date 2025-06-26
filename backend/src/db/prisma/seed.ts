@@ -8,10 +8,8 @@ const prisma = new PrismaClient();
 
 async function main() {
   for (let i = 0; i < 5; i++) {
-    // Generate income and calculate expenses
     const totalBalance = Number(faker.finance.amount({ min: 3000, max: 10000 }));
 
-    // Generate 10 expenses and sum them
     const expenses = Array.from({ length: 10 }).map(() => ({
       title: faker.commerce.productName(),
       amount: Number(faker.finance.amount({ min: 50, max: 1000 })),
@@ -30,9 +28,7 @@ async function main() {
     }));
 
     const totalExpenses = expenses.reduce((sum, exp) => sum + exp.amount, 0);
-    const availableBalance = Math.max(totalBalance - totalExpenses, 0); // avoid negative balances
-
-    // Create user
+    const availableBalance = Math.max(totalBalance - totalExpenses, 0); 
     const user = await prisma.user.create({
       data: {
         name: faker.person.fullName(),
@@ -45,13 +41,11 @@ async function main() {
       },
     });
 
-    // Add userId to each expense
     const expensesWithUserId = expenses.map((expense) => ({
       ...expense,
       userId: user.id,
     }));
 
-    // Insert all expenses
     await prisma.expense.createMany({ data: expensesWithUserId });
   }
 

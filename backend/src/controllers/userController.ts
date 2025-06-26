@@ -40,7 +40,6 @@ export const getTotalBalance = async (req: Request, res: Response) => {
   }
 };
 
-// GET /api/expenses/avilablebalnce?userId=1
 export const getAvailableBalance = async (req: Request, res: Response) => {
   const userId = Number(req.query.userId);
 

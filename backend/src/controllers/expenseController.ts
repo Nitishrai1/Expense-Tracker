@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { prisma } from "../db/index";
 
-// GET all expenses for the given user ID
 export const getAll = async (req: Request, res: Response) => {
   const id = (req.user as { userId: number })?.userId;
   console.log("in the login controller")
@@ -20,7 +19,6 @@ export const getAll = async (req: Request, res: Response) => {
 
 
 
-// GET a specific expense by expense ID
 export const getById = async (req: Request, res: Response) => {
   const userId = Number(req.query.id);
   console.log("inside the getid fun")
@@ -34,17 +32,15 @@ export const getById = async (req: Request, res: Response) => {
   res.json(expense);
 };
 
-// CREATE a new expense for a user
 export const addNew = async (req: Request, res: Response) => {
   try {
-    const id = Number(req.params.id); // user ID
+    const id = Number(req.params.id); 
     const { title, type, amount, category, description, date } = req.body;
     const parsedAmount = parseFloat(amount);
 
     const user = await prisma.user.findUnique({ where: { id } });
     if (!user) return res.status(404).json({ message: "User not found" });
 
-    // Create the expense record
     const expense = await prisma.expense.create({
       data: {
         userId: id,
@@ -57,7 +53,7 @@ export const addNew = async (req: Request, res: Response) => {
       },
     });
 
-    // Update user's balances
+   
     let updatedAvailable = user.availableBalance;
     let updatedTotal = user.totalBalance;
 
@@ -86,7 +82,6 @@ export const addNew = async (req: Request, res: Response) => {
 };
 
 
-// UPDATE an expense by expense ID
 export const updateById = async (req: Request, res: Response) => {
   const id = req.params.id;
   console.log(`id in the udpate fun ${id}`)
@@ -111,7 +106,6 @@ export const updateById = async (req: Request, res: Response) => {
   }
 };
 
-// DELETE an expense by expense ID
 export const deleteById = async (req: Request, res: Response) => {
   const { id } = req.params;
 
