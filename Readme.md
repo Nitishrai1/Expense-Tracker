@@ -25,25 +25,22 @@ A full-stack expense tracking application that helps users manage their finances
 
 ```bash
 ├── backend
-│ ├── src
-│ │ ├── controllers # Handles business logic
-│ │ ├── db
-│ │ │ └── prisma # Prisma setup and schema
-│ │ ├── middleware # Auth middleware (JWT)
-│ │ ├── routes # API routes
-│ │ └── index.ts # Server entry point
-│ └── .env # Backend environment variables
+│   ├── src
+│   │   ├── controllers     # Handles business logic
+│   │   ├── db
+│   │   │   └── prisma      # Prisma setup and schema
+│   │   ├── middleware      # Auth middleware (JWT)
+│   │   ├── routes          # API routes
+│   │   └── index.ts        # Server entry point
+│   └── .env                # Backend environment variables
 │
 ├── frontend
-│ ├── app # Next.js pages and routing
-│ ├── components # Reusable UI components
-│ ├── contexts / hooks # Global state & custom hooks
-│ ├── public / styles # Static files & styling
-│ └── .env # Frontend environment variables
-
+│   ├── app                 # Next.js pages and routing
+│   ├── components          # Reusable UI components
+│   ├── contexts            # Global state & custom hooks
+│   ├── public              # Static files & styling
+│   └── .env                # Frontend environment variables
 ```
-
----
 
 ## 🚀 Getting Started
 
@@ -52,27 +49,28 @@ A full-stack expense tracking application that helps users manage their finances
 ```bash
 git clone https://github.com/Nitishrai1/Expense-Tracker.git
 cd expense-tracker
-```
 
-## Setup Backend
+```
+---
+
+### 2. Setup Backend
 
 ```bash
 cd backend
 npm install
 
 ```
----
+#### Configure Environment Variables
 
-➕ Configure .env in /backend
+Create a `.env` file in the `/backend` directory:
 
 ```bash
 DATABASE_URL=postgresql://user:password@localhost:5432/yourdb
 JWT_SECRET=your_jwt_secret
+
 ```
 
----
-
-➕ Run Prisma Migrations
+Run Prisma Migrations
 
 ```bash
 npx prisma generate
@@ -80,22 +78,179 @@ npx prisma migrate dev --name init
 
 ```
 
----
-▶ Start Backend
+Configure Database Seeding
 
+```bash
+npx ts-node src/db/prisma/seed.ts
+
+```
+Start Backend Server
 ```bash
 npm run dev
 ```
 
-
-## Setup Frontend
+### 3. Setup Frontend
 
 ```bash
 cd ../frontend
 npm install
-```
----
-▶ Start Frontend
-```bash
 npm run dev
 ```
+
+---
+
+## 📱 Features
+
+- **User Authentication**: Secure login/signup with JWT
+- **Expense Tracking**: Add, edit, and delete expenses
+- **Income Management**: Track multiple income sources
+- **Dashboard**: Visual overview of financial data
+- **Categories**: Organize expenses by categories
+- **Responsive Design**: Works on desktop and mobile devices
+
+Here's your corrected README.md file with proper formatting:
+
+```markdown
+# 💸 Expense Tracker App
+
+A full-stack expense tracking application that helps users manage their finances by tracking income and expenses. Built with **Node.js, Express, Prisma, PostgreSQL, and JWT** on the backend, and **Next.js, Tailwind CSS** on the frontend.
+
+---
+
+## 🔧 Tech Stack
+
+### Backend
+- Node.js + Express
+- TypeScript
+- Prisma ORM
+- PostgreSQL
+- JWT Authentication
+
+### Frontend
+- Next.js (App Router)
+- React
+- Tailwind CSS
+- Axios
+
+---
+
+## 📁 Project Structure
+
+```bash
+├── backend
+│   ├── src
+│   │   ├── controllers     # Handles business logic
+│   │   ├── db
+│   │   │   └── prisma      # Prisma setup and schema
+│   │   ├── middleware      # Auth middleware (JWT)
+│   │   ├── routes          # API routes
+│   │   └── index.ts        # Server entry point
+│   └── .env                # Backend environment variables
+│
+├── frontend
+│   ├── app                 # Next.js pages and routing
+│   ├── components          # Reusable UI components
+│   ├── contexts            # Global state & custom hooks
+│   ├── public              # Static files & styling
+│   └── .env                # Frontend environment variables
+```
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the Repository
+
+```shellscript
+git clone https://github.com/Nitishrai1/Expense-Tracker.git
+cd expense-tracker
+```
+
+### 2. Setup Backend
+
+```shellscript
+cd backend
+npm install
+```
+
+#### Configure Environment Variables
+
+Create a `.env` file in the `/backend` directory:
+
+```shellscript
+DATABASE_URL=postgresql://user:password@localhost:5432/yourdb
+JWT_SECRET=your_jwt_secret
+```
+
+#### Run Prisma Migrations
+
+```shellscript
+npx prisma generate
+npx prisma migrate dev --name init
+```
+
+#### Configure Database Seeding
+
+```shellscript
+npx ts-node src/db/prisma/seed.ts
+```
+
+#### Start Backend Server
+
+```shellscript
+npm run dev
+```
+
+### 3. Setup Frontend
+
+```shellscript
+cd ../frontend
+npm install
+```
+
+#### Start Frontend Development Server
+
+```shellscript
+npm run dev
+```
+
+---
+
+## 📱 Features
+
+- **User Authentication**: Secure login/signup with JWT
+- **Expense Tracking**: Add, edit, and delete expenses
+- **Income Management**: Track multiple income sources
+- **Dashboard**: Visual overview of financial data
+- **Categories**: Organize expenses by categories
+- **Responsive Design**: Works on desktop and mobile devices
+
+
+---
+
+## 🔗 API Endpoints
+
+### Authentication
+
+- `POST /api/auth/signup` - User registration
+- `POST /api/auth/login` - User login
+
+
+### Expenses
+
+- `GET /api/expenses` - Get user expenses
+- `POST /api/expenses/create/:userId` - Create new expense
+- `PUT /api/expenses/update/:id` - Update expense
+- `DELETE /api/expenses/delete/:id` - Delete expense
+
+
+### User Data
+
+- `GET /api/user/totalbalance` - Get total balance
+- `GET /api/user/availablebalance` - Get available balance
+
+
+Project Link: [https://github.com/Nitishrai1/Expense-Tracker](https://github.com/Nitishrai1/Expense-Tracker)
+
+### ScreenShorts
+
