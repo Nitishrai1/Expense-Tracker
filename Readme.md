@@ -1,5 +1,5 @@
 
-```markdown
+
 # 💸 Expense Tracker App
 
 A full-stack expense tracking application that helps users manage their finances by tracking income and expenses. Built with **Node.js, Express, Prisma, PostgreSQL, and JWT** on the backend, and **Next.js, Tailwind CSS** on the frontend.
