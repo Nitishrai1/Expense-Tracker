@@ -87,19 +87,52 @@ export const addNew = async (req: Request, res: Response) => {
 
 
 export const updateById = async (req: Request, res: Response) => {
-  const id = req.params.id;
-  console.log(`id in the udpate fun ${id}`)
-  const { title, amount, category, description, date } = req.body;
+  const id = Number(req.params.id);
+  const { title, amount, category, description, date, type } = req.body;
 
   try {
+    const oldExpense = await prisma.expense.findUnique({ where: { id } });
+    if (!oldExpense) return res.status(404).json({ message: "Expense not found" });
+
+    const user = await prisma.user.findUnique({ where: { id: oldExpense.userId } });
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    let updatedAvailable = user.availableBalance;
+    let updatedTotal = user.totalBalance;
+
+   
+    if (oldExpense.type === "income") {
+      updatedAvailable -= oldExpense.amount;
+      updatedTotal -= oldExpense.amount;
+    } else {
+      updatedAvailable += oldExpense.amount;
+    }
+
+    const newAmount = parseFloat(amount);
+    if (type === "income") {
+      updatedAvailable += newAmount;
+      updatedTotal += newAmount;
+    } else {
+      updatedAvailable -= newAmount;
+    }
+
     const updated = await prisma.expense.update({
-      where: { id: Number(id) },
+      where: { id },
       data: {
         title,
-        amount: parseFloat(amount),
+        amount: newAmount,
         category,
         description,
         date: new Date(date),
+        type,
+      },
+    });
+
+    await prisma.user.update({
+      where: { id: user.id },
+      data: {
+        availableBalance: updatedAvailable,
+        totalBalance: updatedTotal,
       },
     });
 
