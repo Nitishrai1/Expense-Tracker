@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "prisma generate --schema=src/db/prisma/schema.prisma",
+    "build": "prisma generate --schema=src/db/prisma/schema.prisma && tsc",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts"
   },
   "keywords": [],

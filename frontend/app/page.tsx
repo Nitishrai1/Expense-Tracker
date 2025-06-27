@@ -56,21 +56,7 @@ export default function LandingPage() {
                 </div>
               </div>
 
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-8 pt-8">
-                <div className="text-center">
-                  <div className="text-3xl lg:text-4xl font-bold text-white mb-2">200k+</div>
-                  <div className="text-gray-400 text-sm">Total Users</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl lg:text-4xl font-bold text-white mb-2">2.5M+</div>
-                  <div className="text-gray-400 text-sm">Total Downloads</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl lg:text-4xl font-bold text-white mb-2">53%</div>
-                  <div className="text-gray-400 text-sm">Average Savings</div>
-                </div>
-              </div>
+              
             </div>
 
             {/* Right Content - Mobile Mockup */}
