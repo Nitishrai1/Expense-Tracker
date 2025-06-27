@@ -143,7 +143,8 @@ Project Link: [https://github.com/Nitishrai1/Expense-Tracker](https://github.com
 
 ### ScreenShorts
 
-![image](https://github.com/user-attachments/assets/452fb253-f61e-4464-8ac3-4b36b43d0346)
+![image](https://github.com/user-attachments/assets/cd443e70-eb37-4818-988f-b57e0f7a1cd6)
+
 ![image](https://github.com/user-attachments/assets/b69c98a3-0aaa-4176-8045-d6385201ba62)
 
 ![image](https://github.com/user-attachments/assets/0b4fac0b-9b25-4313-bb6c-f9fadb5e895c)
